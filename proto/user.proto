@@ -1,0 +1,33 @@
+
+syntax = "proto3";
+
+package minicommerce.user.v1;
+
+option java_multiple_files = true;
+option java_package = "com.minicommerce.contracts.user";
+option java_outer_classname = "UserProto";
+
+// User Service contract
+service UserService {
+
+    // Create a guest user
+    rpc CreateGuestUser(CreateGuestUserRequest)
+        returns (UserResponse);
+
+    // Retrieve user by ID
+    rpc GetUser(GetUserRequest)
+        returns (UserResponse);
+}
+
+message CreateGuestUserRequest {
+    string name = 1;
+}
+
+message GetUserRequest {
+    string user_id = 1;
+}
+
+message UserResponse {
+    string user_id = 1;
+    string name = 2;
+}

@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package minicommerce.payment.v1;
+
+option java_multiple_files = true;
+option java_package = "com.minicommerce.contracts.payment";
+option java_outer_classname = "PaymentProto";
+
+// Payment Service contract
+service PaymentService {
+
+    rpc ProcessPayment(PaymentRequest)
+        returns (PaymentResponse);
+}
+
+message PaymentRequest {
+    string order_id = 1;
+
+    // Amount in smallest currency unit (e.g. paise)
+    int64 amount_minor_units = 2;
+
+    string currency = 3;
+}
+
+message PaymentResponse {
+    string transaction_id = 1;
+    bool success = 2;
+    string message = 3;
+}
